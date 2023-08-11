@@ -11,12 +11,10 @@ RUN apt-get update && apt-get install -y \
     gfortran
 
 
-RUN pip install --no-cache-dir --upgrade --use-pep517  -y -r requirements.pip
+RUN pip install --no-cache-dir --upgrade --use-pep517  -r requirements.pip
 
 RUN python3 -m spacy download en_core_web_sm
 
-CMD [ "python3","chatbot.py" ]
-
-
-
 EXPOSE 5000
+
+CMD [ "python3","chatbot.py" ]
