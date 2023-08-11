@@ -7,21 +7,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag chatbot:$(date +%s)
-      
-    - name: Login to DockerHub
-      uses: docker/build-push-actionlogin@v1
-      with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: flatfourwrx/chatbot
-          tags: latest
-      
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build and push Docker image
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p $DOCKERHUB_TOKEN
+          docker build -t Chatbot:latest .
+          docker push Chatbot:latest
