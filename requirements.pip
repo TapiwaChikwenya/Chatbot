@@ -1,0 +1,8 @@
+pip
+setuptools
+wheel
+numpy
+pyyaml==5.1.2
+chatterbot
+chatterbot_corpus
+flask
