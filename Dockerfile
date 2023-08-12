@@ -11,23 +11,16 @@ RUN apt-get update && apt-get install -y \
     gfortran
 
 
+# Upgrade pip
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --upgrade setuptools wheel
-RUN pip install --use-pep517 numpy
-RUN pip install  pyyaml==5.1.2
 
-RUN pip install chatterbot
+# Install Python dependencies
 
-RUN   pip install chatterbot_corpus
-
-RUN pip install flask
-
-#RUN pip install spacy
+RUN pip install  -r requirements.pip
 
 RUN python3 -m spacy download en_core_web_sm
 
+EXPOSE 5000
+
 CMD [ "python3","chatbot.py" ]
-
-
-
-EXPOSE 1032

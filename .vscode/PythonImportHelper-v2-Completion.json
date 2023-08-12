@@ -1,0 +1,198 @@
+[
+    {
+        "label": "ChatBot",
+        "importPath": "chatterbot",
+        "description": "chatterbot",
+        "isExtraImport": true,
+        "detail": "chatterbot",
+        "documentation": {}
+    },
+    {
+        "label": "ChatBot",
+        "importPath": "chatterbot",
+        "description": "chatterbot",
+        "isExtraImport": true,
+        "detail": "chatterbot",
+        "documentation": {}
+    },
+    {
+        "label": "languages",
+        "importPath": "chatterbot",
+        "description": "chatterbot",
+        "isExtraImport": true,
+        "detail": "chatterbot",
+        "documentation": {}
+    },
+    {
+        "label": "ChatterBotCorpusTrainer",
+        "importPath": "chatterbot.trainers",
+        "description": "chatterbot.trainers",
+        "isExtraImport": true,
+        "detail": "chatterbot.trainers",
+        "documentation": {}
+    },
+    {
+        "label": "ListTrainer",
+        "importPath": "chatterbot.trainers",
+        "description": "chatterbot.trainers",
+        "isExtraImport": true,
+        "detail": "chatterbot.trainers",
+        "documentation": {}
+    },
+    {
+        "label": "LevenshteinDistance",
+        "importPath": "chatterbot.comparisons",
+        "description": "chatterbot.comparisons",
+        "isExtraImport": true,
+        "detail": "chatterbot.comparisons",
+        "documentation": {}
+    },
+    {
+        "label": "get_first_response",
+        "importPath": "chatterbot.response_selection",
+        "description": "chatterbot.response_selection",
+        "isExtraImport": true,
+        "detail": "chatterbot.response_selection",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "LogicAdapter",
+        "importPath": "chatterbot.logic",
+        "description": "chatterbot.logic",
+        "isExtraImport": true,
+        "detail": "chatterbot.logic",
+        "documentation": {}
+    },
+    {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "spacy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "spacy",
+        "description": "spacy",
+        "detail": "spacy",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "chatbot",
+        "description": "chatbot",
+        "peekOfCode": "def index():\n    return render_template('index.html')\n# Define the route to handle user input and chatbot response\n@app.route('/get_response', methods=['POST'])\ndef get_response():\n    user_input = request.form['user_input']\n    response = chatbot.get_response(user_input).text\n    return {'response': response}\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "chatbot",
+        "documentation": {}
+    },
+    {
+        "label": "get_response",
+        "kind": 2,
+        "importPath": "chatbot",
+        "description": "chatbot",
+        "peekOfCode": "def get_response():\n    user_input = request.form['user_input']\n    response = chatbot.get_response(user_input).text\n    return {'response': response}\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "chatbot",
+        "documentation": {}
+    },
+    {
+        "label": "chatbot",
+        "kind": 5,
+        "importPath": "chatbot",
+        "description": "chatbot",
+        "peekOfCode": "chatbot = ChatBot('MyChatBot',  logic_adapters=[\n      {\n        \"import_path\": \"chatterbot.logic.BestMatch\",\n        \"statement_comparison_function\": LevenshteinDistance,  # Use the imported class\n        \"response_selection_method\": get_first_response,  # Use the imported function\n        \"default_response\": \"I'm sorry, I don't have a specific answer for that.\",\n        \"maximum_similarity_threshold\": 0.50\n    }\n]\n)",
+        "detail": "chatbot",
+        "documentation": {}
+    },
+    {
+        "label": "trainer",
+        "kind": 5,
+        "importPath": "chatbot",
+        "description": "chatbot",
+        "peekOfCode": "trainer = ChatterBotCorpusTrainer(chatbot)\n# Train the chatbot on the English language corpus data\ntrainer.train('chatterbot.corpus.english','chatterbot.corpus.english.conversations')\n# Function to interact with the chatbot\n'''def chat_with_bot():\n    print(\"Type 'exit' to end the conversation.\")\n    while True:\n        user_input = input(\"You: \")\n        if user_input.lower() == 'exit':\n            print(\"Goodbye!\")",
+        "detail": "chatbot",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "chatbot",
+        "description": "chatbot",
+        "peekOfCode": "app = Flask(__name__)\n# Define the route for the home page\n@app.route('/')\ndef index():\n    return render_template('index.html')\n# Define the route to handle user input and chatbot response\n@app.route('/get_response', methods=['POST'])\ndef get_response():\n    user_input = request.form['user_input']\n    response = chatbot.get_response(user_input).text",
+        "detail": "chatbot",
+        "documentation": {}
+    },
+    {
+        "label": "chatbot",
+        "kind": 5,
+        "importPath": "chatpractice",
+        "description": "chatpractice",
+        "peekOfCode": "chatbot = ChatBot('Charlie')\ntrainer = ListTrainer(chatbot)\ntrainer.train([\n    \"Hi, can I help you?\",\n    \"Sure, I'd like to book a flight to Iceland.\",\n    \"Your flight has been booked.\"\n])\n# Get a response to the input text 'I would like to book a flight.'\nresponse = chatbot.get_response('I would like to book a flight.')\nprint(response)",
+        "detail": "chatpractice",
+        "documentation": {}
+    },
+    {
+        "label": "trainer",
+        "kind": 5,
+        "importPath": "chatpractice",
+        "description": "chatpractice",
+        "peekOfCode": "trainer = ListTrainer(chatbot)\ntrainer.train([\n    \"Hi, can I help you?\",\n    \"Sure, I'd like to book a flight to Iceland.\",\n    \"Your flight has been booked.\"\n])\n# Get a response to the input text 'I would like to book a flight.'\nresponse = chatbot.get_response('I would like to book a flight.')\nprint(response)",
+        "detail": "chatpractice",
+        "documentation": {}
+    },
+    {
+        "label": "response",
+        "kind": 5,
+        "importPath": "chatpractice",
+        "description": "chatpractice",
+        "peekOfCode": "response = chatbot.get_response('I would like to book a flight.')\nprint(response)",
+        "detail": "chatpractice",
+        "documentation": {}
+    },
+    {
+        "label": "CustomLogicAdapter",
+        "kind": 6,
+        "importPath": "custom_logic_adapter",
+        "description": "custom_logic_adapter",
+        "peekOfCode": "class CustomLogicAdapter(LogicAdapter):\n    def can_process(self, statement):\n        return True  # Allow the adapter to process any statement\n    def process(self, statement):\n        # Implement your custom logic to select or modify the response here\n        return statement  # Return the statement as is (no modification)",
+        "detail": "custom_logic_adapter",
+        "documentation": {}
+    },
+    {
+        "label": "PosLemmaTagger",
+        "kind": 6,
+        "importPath": "tagging",
+        "description": "tagging",
+        "peekOfCode": "class PosLemmaTagger(object):\n    def __init__(self, language=None):\n        self.language = language or languages.ENG\n        self.punctuation_table = str.maketrans(dict.fromkeys(string.punctuation))\n        self.nlp = spacy.load(\"en_core_web_sm\")\n    def get_bigram_pair_string(self, text):\n        \"\"\"\n        Return a string of text containing part-of-speech, lemma pairs.\n        \"\"\"\n        bigram_pairs = []",
+        "detail": "tagging",
+        "documentation": {}
+    }
+]
