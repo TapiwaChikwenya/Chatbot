@@ -12,10 +12,12 @@ RUN apt-get update && apt-get install -y \
 
 
 # Upgrade pip
-RUN pip install --no-cache-dir --upgrade pip --use-pep517
+RUN pip install --upgrade pip
+
 
 # Install Python dependencies
-RUN pip install -r requirements.pip
+
+RUN pip install  -r requirements.pip
 
 RUN python3 -m spacy download en_core_web_sm
 

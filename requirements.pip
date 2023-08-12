@@ -1,6 +1,6 @@
 pip
 setuptools
-wheel
+#wheel>=0.32.0,<0.33.0  # Use a compatible version range
 numpy
 pyyaml==5.1.2
 chatterbot
