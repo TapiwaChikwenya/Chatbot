@@ -1,50 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Chatbot Webpage</title>
+  <title>Chatbot</title>
+
+  <style>
+    .user {
+      background: blue;
+      color: white;
+    }
+
+    .bot {
+      background: grey;
+    }
+  </style>
+
 </head>
+
 <body>
-    <h1>Welcome to AI ChatBot Weird Conversations!</h1>
-    <div>
-        <div id="chat-display">
-            <!-- Chat messages will be displayed here -->
-        </div>
-        <input type="text" id="user-input" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-    <script>
-        function appendMessage(who, message) {
-            var chatDisplay = document.getElementById('chat-display');
-            chatDisplay.innerHTML += '<strong>' + who + ':</strong> ' + message + '<br>';
-            chatDisplay.scrollTop = chatDisplay.scrollHeight;
-        }
 
-        function sendMessage() {
-            var userInput = document.getElementById('user-input').value;
-            if (userInput.trim() !== '') {
-                appendMessage('You', userInput);
-                document.getElementById('user-input').value = '';
+  <h1>Chatbot</h1>
 
-                // Send user input to the server
-                fetch('/get_response', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: 'user_input=' + encodeURIComponent(userInput)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Display the chatbot's response
-                    appendMessage('ChatBot', data.response);
-                });
-            }
-        }
+  <div id="chatbox">
+    <div id="chat-display"></div>
 
-        // Focus on the input field when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('user-input').focus();
-        });
-    </script>
+    <input type="text" id="user-input">
+    <button onclick="sendMessage()">Send</button>
+
+  </div>
+
+  <script>
+    function appendMessage(who, message) {
+      let time = new Date().toLocaleTimeString();
+      let className = 'bot';
+
+      if (who === 'You') {
+        className = 'user';
+      }
+
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add(className);
+      msgDiv.innerHTML = `<strong>${time} ${who}:</strong> ${message}`;
+
+      chatDisplay.appendChild(msgDiv);
+      msgDiv.style.opacity = 0;
+
+      setTimeout(() => {
+        msgDiv.style.opacity = 1;
+        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+      }, 100);
+    }
+
+    function sendMessage() {
+      let userInput = document.getElementById('user-input').value;
+
+      if (userInput.trim() !== '') {
+        appendMessage('You', userInput);
+
+        document.getElementById('user-input').value = '';
+
+        appendMessage('ChatBot', 'Typing...');
+
+        fetch('/get_response', {
+          method: 'POST',
+          body: JSON.stringify({
+            message: userInput
+          })
+        }).then(res => res.json())
+          .then(data => {
+            appendMessage('ChatBot', data.response);
+          });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('user-input').focus();
+    });
+  </script>
+
 </body>
 </html>

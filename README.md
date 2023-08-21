@@ -28,6 +28,6 @@ Then run on docker
 
 Or run in a kubernetes cluster. make sure kubectl is installed then run the following command
 
-```kubectl apply -f chatbot.yml```
+```kubectl apply -f k8-chatbot.yml```
 
 ```kubectl port-forward deployment/chatbot 5000:8089```
